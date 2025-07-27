@@ -1,0 +1,89 @@
+.fitting-table-container {
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.fitting-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.fitting-table th, .fitting-table td {
+    border: 1px solid #e9ecef;
+    padding: 10px 12px;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 0.9em;
+}
+
+.fitting-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #495057;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.fitting-table tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+.fitting-dropdown {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9em;
+    background-color: #fff;
+    min-width: 120px;
+}
+
+.function-table-container {
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.function-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.function-table th, .function-table td {
+    border: 1px solid #e9ecef;
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.function-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: #495057;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+.function-table tbody tr:nth-child(even) {
+    background-color: #f3f3f3;
+}
+
+.function-table td input {
+    width: calc(100% - 12px);
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9em;
+    box-sizing: border-box;
+}
+.function-table td:first-child {
+    text-align: center;
+    width: 30px;
+}

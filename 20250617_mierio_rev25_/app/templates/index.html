@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mierio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tabs.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <header class="global-header">
+        <h1>Mierio</h1>
+    </header>
+
+    <nav id="side-menu" class="side-nav">
+        <button id="hamburger-btn" class="hamburger-button" aria-label="メニューを開閉">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="file-input-container">
+            <div class="file-input-group">
+                <div class="label-wrapper">
+                    <label for="asset-folder-name">Asset:</label>
+                    <button class="file-button" onclick="document.getElementById('asset-folder-input').click()">＋</button>
+                </div>
+                <input type="text" id="asset-folder-name" class="file-display-box" readonly placeholder="No folder selected">
+                <input type="file" id="asset-folder-input" webkitdirectory style="display: none;">
+            </div>
+            <div class="file-input-group">
+                <div class="label-wrapper">
+                    <label for="model-file-name">Model:</label>
+                    <button class="file-button" id="model-file-button" onclick="document.getElementById('model-file-input').click()" disabled>＋</button>
+                </div>
+                <input type="text" id="model-file-name" class="file-display-box" readonly placeholder="No file selected">
+                <input type="file" id="model-file-input" accept=".json" style="display: none;">
+            </div>
+        </div>
+
+    </nav>
+
+    <div id="main-content-wrapper">
+        <main class="container">
+
+            <section class="tabs-section">
+                <div class="tabs">
+                    <button class="tab-button active" onclick="openTab(event, 'view-tab')">VIEW</button>
+                    <button class="tab-button" onclick="openTab(event, 'model-tab')">MODEL</button>
+                    <button class="tab-button" onclick="openTab(event, 'wave-tab')">WAVE</button>
+                </div>
+
+                <div id="view-tab" class="tab-content active">
+                    <div class="view-controls">
+                        <div class="parameter-section feature-parameters">
+                            <h3>Feature parameter</h3>
+                            <div id="feature-params-container">
+                            </div>
+                        </div>
+
+                        <div class="parameter-section target-parameters">
+                            <h3>Target parameter</h3>
+                            <div id="target-params-container">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="view-actions">
+                        <div class="toggle-switch-container">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="overlap-toggle" disabled>
+                                <span class="slider round"></span>
+                            </label>
+                            <span>オーバーラップ</span>
+                        </div>
+                        <button id="finetune-button" class="action-button" disabled>FINETUNE</button>
+                        <button id="threshold-button" class="action-button threshold-toggle-button" disabled>Threshold</button>
+                        <input type="number" id="threshold-value" class="threshold-input" placeholder="Threshold Value" disabled>
+                    </div>
+
+                    <div id="graph-container" class="graph-container">
+                    </div>
+                    <div id="learning-progress-bar-container" class="learning-progress-bar-container">
+                        <div id="learning-progress-bar" class="learning-progress-bar"></div>
+                        <span id="learning-progress-text" class="learning-progress-text"></span>
+                    </div>
+                </div>
+
+                <div id="model-tab" class="tab-content">
+                    <div class="model-controls-top">
+                        <div class="input-group" style="margin-top: 15px; width: 100%; max-width: unset;">
+                            <label for="model-display-name" style="min-width: 90px; text-align: left;">Model Name:</label>
+                            <input type="text" id="model-display-name" class="file-display-box" placeholder="No model loaded" style="margin-right: 0;">
+                        </div>
+                    </div>
+
+                    <div class="model-section-header">
+                        <h3 class="model-section-title">Function Definitions</h3>
+                        <div class="model-section-actions">
+                            <button class="action-button add-del-button" id="add-function-row">+Add</button>
+                            <button class="action-button add-del-button" id="delete-function-row">-Del</button>
+                        </div>
+                    </div>
+                    <div class="function-table-container">
+                        <table class="function-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>name</th>
+                                    <th>equation</th>
+                                    <th>parameters</th>
+                                </tr>
+                            </thead>
+                            <tbody id="function-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="model-section-header">
+                        <h3 class="model-section-title">Fitting Configurations</h3>
+                        <div class="model-section-actions">
+                            <div class="toggle-switch-container">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="fitting-method-toggle" checked> <span class="slider round"></span>
+                                </label>
+                                <span id="fitting-method-label">線形結合</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fitting-table-container">
+                        <table id="fitting-table" class="fitting-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="model-controls-bottom">
+                        <button class="action-button" id="model-apply-button">APPLY</button>
+                    </div>
+                </div>
+
+                <div id="wave-tab" class="tab-content">
+                    <section class="production-io">
+                        <h2>Production I/O:</h2>
+                        <div class="led-buttons">
+                            <button class="led-button" id="ch1-led">Ch1: <span class="led-indicator"></span></button>
+                            <button class="led-button" id="ch2-led">Ch2: <span class="led-indicator"></span></button>
+                            <button class="led-button" id="ch3-led">Ch3: <span class="led-indicator"></span></button>
+                            <button class="led-button" id="ch4-led">Ch4: <span class="led-indicator"></span></button>
+                            <button class="led-button" id="ch5-led">Ch5: <span class="led-indicator"></span></button>
+                            <button class="led-button" id="ch6-led">Ch6: <span class="led-indicator"></span></button>
+                            <button class="led-button" id="ch7-led">Ch7: <span class="led-indicator"></span></button>
+                            <button class="led-button" id="ch8-led">Ch8: <span class="led-indicator"></span></button>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/api_service.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ui_handlers.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/view_tab.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/model_tab.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

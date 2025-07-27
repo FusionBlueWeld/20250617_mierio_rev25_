@@ -1,0 +1,94 @@
+@media (max-width: 992px) {
+    .container {
+        padding: 20px;
+    }
+    .view-controls {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .parameter-section {
+        min-width: unset;
+        width: 100%;
+    }
+    .model-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .model-section-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .file-input-wrapper {
+        align-items: center;
+    }
+    .input-group {
+        max-width: 100%;
+    }
+    .model-controls-top .input-group {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+    .input-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .input-group label {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+    .file-display-box {
+        margin-right: 0;
+        width: 100%;
+    }
+    .file-button {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .tabs {
+        flex-wrap: wrap;
+    }
+    .tab-button {
+        flex-grow: 1;
+        margin-bottom: 5px;
+    }
+    .view-actions {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .threshold-input {
+        width: 100%;
+    }
+    .model-controls-top,
+    .model-controls-bottom {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    .tab-button {
+        padding: 12px 15px;
+        font-size: 1em;
+    }
+    .action-button {
+        width: 100%;
+    }
+    .param-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .param-row span, .param-dropdown, .constant-value-input {
+        width: 100%;
+        min-width: unset;
+    }
+}

@@ -1,0 +1,261 @@
+.file-input-container {
+    padding: 60px 20px 20px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.file-input-group {
+    margin-bottom: 20px;
+}
+
+.file-input-group label {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.label-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.file-input-group .file-display-box {
+    width: 100%;
+    margin-top: 8px;
+    box-sizing: border-box;
+}
+
+.file-display-box {
+    width:120px;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #e9ecef;
+    cursor: default;
+    font-size: 1em;
+    color: #555;
+}
+
+.file-button {
+    background-color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.file-button:hover:not(:disabled) {
+    background-color: #e9ecef;
+}
+
+.file-button:disabled {
+    background-color: #fff;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+.led-buttons {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    justify-content: center;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.led-button {
+    background-color: #fff;
+    color: #333;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    flex-shrink: 0;
+    width: 100px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.led-button:hover {
+    background-color: #f0f0f0;
+    border-color: #a0a0a0;
+}
+
+.led-indicator {
+    width: 12px;
+    height: 12px;
+    background-color: #aaa;
+    border-radius: 50%;
+    margin-left: 8px;
+    border: 1px solid #777;
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.led-indicator.active {
+    background-color: #28a745;
+    box-shadow: 0 0 10px #28a745, inset 0 0 6px #fff;
+}
+
+.toggle-switch-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.action-button {
+    background-color: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease;
+}
+
+.action-button:hover:not(:disabled) {
+    background-color: #5a6268;
+}
+
+.action-button:disabled {
+    background-color: #e9ecef;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+#learning-button {
+    background-color: #ffc107;
+}
+#learning-button:hover:not(:disabled) {
+    background-color: #e0a800;
+}
+
+.threshold-toggle-button.active {
+    background-color: #28a745;
+}
+.threshold-toggle-button.active:hover:not(:disabled) {
+    background-color: #218838;
+}
+
+.threshold-input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    width: 120px;
+}
+.threshold-input:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+.learning-progress-bar-container {
+    width: 100%;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    margin-top: 20px;
+    height: 25px;
+    overflow: hidden;
+    position: relative;
+    display: none;
+}
+
+.learning-progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #007bff;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    line-height: 25px;
+    transition: width 0.3s ease-in-out;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.learning-progress-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    line-height: 25px;
+    color: #333;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.add-del-button {
+    background-color: #17a2b8;
+    padding: 8px 12px;
+    font-size: 0.9em;
+}
+.add-del-button:hover {
+    background-color: #138496;
+}

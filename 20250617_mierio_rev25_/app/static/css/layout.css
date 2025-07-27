@@ -1,0 +1,95 @@
+.global-header {
+    position: fixed;
+    top: 0;
+    left: 80px;
+    width: calc(100% - 80px);
+    transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
+    background-color: #f0f2f5;
+    padding: 30px 40px;
+    height: 50px;
+    box-shadow: none;
+    z-index: 1000;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+}
+
+.global-header.shifted {
+    left: 350px;
+    width: calc(100% - 350px);
+}
+
+.global-header h1 {
+    font-size: 2.2em;
+    color: #333;
+    letter-spacing: 2px;
+    margin: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding-left: 60px;
+}
+
+.side-nav {
+    height: 100%;
+    width: 80px;
+    position: fixed;
+    z-index: 1100;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    overflow-x: hidden;
+    transition: width 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+.side-nav.open {
+    width: 250px;
+}
+
+.side-nav .file-input-container {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
+}
+
+.side-nav.open .file-input-container {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.1s;
+}
+
+.hamburger-button {
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1200;
+}
+
+.hamburger-button span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: all 0.3s;
+}
+
+#main-content-wrapper {
+    margin-left: 80px;
+    padding: 0 20px;
+    transition: margin-left 0.3s ease-in-out;
+}
+#main-content-wrapper.shifted {
+    margin-left: 350px;
+}
